@@ -7,17 +7,13 @@ as_numbers=671111101031149711611710897116105111110115
 
 def transfer(ascii_numbers):
     ascii_code={"a":97, "z":122, "A":65, "Z":90}
-    arr=[]
-    for i in range(int(math.log10(ascii_numbers)//1), -1, -1):
-        if ascii_numbers//10**i >= ascii_code["A"] and ascii_numbers//10**i <= ascii_code["Z"]:
-            arr.append(chr(ascii_numbers//10**i))
-            ascii_numbers=ascii_numbers%10**i
-        if ascii_numbers//10**i >= ascii_code["a"] and ascii_numbers//10**i <= ascii_code["z"]:
-            arr.append(chr(ascii_numbers//10**i))
-            ascii_numbers=ascii_numbers%10**i
     txt=""
-    for i in arr:
-        txt+=i
+    for i in range(int(math.log10(ascii_numbers)//1), -1, -1):
+        if (ascii_numbers//10**i >= ascii_code["A"] and ascii_numbers//10**i <= ascii_code["Z"])\
+        or (ascii_numbers//10**i >= ascii_code["a"] and ascii_numbers//10**i <= ascii_code["z"]):
+            txt+=chr(ascii_numbers//10**i)
+            ascii_numbers=ascii_numbers%10**i
+
     return txt
 
 print(transfer(as_numbers))  
